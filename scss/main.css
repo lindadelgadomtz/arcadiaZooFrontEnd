@@ -12005,4 +12005,52 @@ textarea.form-control-lg {
 
 .container-background {
   background-color: #D3D3D3; /* Light gray background */
+}
+
+.bi-star-fill {
+  color: #FFD700;
+  -webkit-text-stroke: 1px black;
+}
+
+.container-custom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.text-avis {
+  color: #228B22;
+}
+
+.carouselExampleControlsNoTouching {
+  display: flex;
+}
+
+.image-card {
+  position: relative;
+}
+.image-card:hover .titre-image {
+  opacity: 1;
+}
+.image-card:hover img {
+  filter: brightness(0.3);
+}
+.image-card img {
+  transition: all 0.3s;
+  height: 270px;
+}
+.image-card .titre-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.text-services {
+  color: #87CEEB;
+  text-align: justify;
+  padding-top: 20px;
 }/*# sourceMappingURL=main.css.map */
