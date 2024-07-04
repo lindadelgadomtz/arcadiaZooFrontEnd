@@ -12053,4 +12053,29 @@ textarea.form-control-lg {
   color: #87CEEB;
   text-align: justify;
   padding-top: 20px;
+}
+
+.form-group {
+  color: #8B4513;
+}
+
+.star-rating {
+  direction: rtl;
+  display: inline-flex;
+  font-size: 2rem;
+}
+.star-rating input[type=radio] {
+  display: none;
+}
+.star-rating input[type=radio] + label {
+  color: #ddd;
+  cursor: pointer;
+  font-size: 2rem;
+  transition: color 0.2s;
+}
+.star-rating input[type=radio] + label:before {
+  content: "★";
+}
+.star-rating input[type=radio] + label:hover, .star-rating input[type=radio] + label:hover ~ label, .star-rating input[type=radio] + label:checked, .star-rating input[type=radio] + label:checked ~ label {
+  color: #ffc107;
 }/*# sourceMappingURL=main.css.map */

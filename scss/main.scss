@@ -36,7 +36,8 @@
 
 .btn{
     background-color:#8B4513;
-    color:white
+    color:white;
+    
 }
 
 .article-text{
@@ -100,4 +101,36 @@
     color: #87CEEB;
     text-align: justify;
     padding-top: 20px;
+}
+
+//*** AVIS****//
+.form-group{
+    color:#8B4513;
+}
+.star-rating {
+    direction: rtl;
+    display: inline-flex;
+    font-size: 2rem;
+
+    input[type="radio"] {
+        display: none;
+
+        & + label {
+            color: #ddd;
+            cursor: pointer;
+            font-size: 2rem;
+            transition: color 0.2s;
+
+            &:before {
+                content: "\2605";
+            }
+
+            &:hover,
+            &:hover ~ label,
+            &:checked,
+            &:checked ~ label {
+                color: #ffc107;
+            }
+        }
+    }
 }
