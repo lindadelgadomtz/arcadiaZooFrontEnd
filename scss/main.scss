@@ -134,3 +134,32 @@
         }
     }
 }
+
+//**Connexion**//
+$secondary-text-color: #87CEEB;
+$primary-text-color: #228B22;
+
+
+.btn-primary-custom {
+    background-color: $button-color;
+    color: white;
+    border: none;
+
+    &:hover {
+        background-color: darken($button-color, 10%);
+    }
+}
+
+.text-primary-custom {
+    color: $primary-text-color;
+}
+
+.text-secondary-custom {
+    color: $secondary-text-color;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    padding: 20px;
+}
