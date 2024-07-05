@@ -163,3 +163,35 @@ $primary-text-color: #228B22;
     border: none;
     padding: 20px;
 }
+
+//**Contact**//
+
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+.btn-primary-custom {
+    background-color: $button-color;
+    color: white;
+    border: none;
+
+    &:hover {
+        background-color: darken($button-color, 10%);
+    }
+}
+
+
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+}
+
+textarea.form-control {
+    resize: none;
+}
