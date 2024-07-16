@@ -3,7 +3,7 @@
 @import 'custom';
 
 
-
+// HERO
 .hero-scene{
     position: relative;
     &::before{
@@ -32,9 +32,12 @@
     }
 }
 
+//Buttons
+
 .btn{
     background-color:#8B4513;
-    color:white
+    color:white;
+    
 }
 
 .article-text{
@@ -45,4 +48,150 @@
 
 .container-background {
     background-color: #D3D3D3; /* Light gray background */
+}
+
+.bi-star-fill{
+    color: #FFD700;
+    -webkit-text-stroke: 1px black;
+
+}
+
+.container-custom{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    
+}
+
+.text-avis{
+    color:#228B22;
+}
+
+.carouselExampleControlsNoTouching{
+    display: flex;
+}
+
+.image-card{
+    position:relative;
+    &:hover{
+        .titre-image{
+            opacity: 1;
+        }
+        img{filter: brightness(0.3);
+        }
+    }
+    
+    img{
+        transition: all 0.3s;
+        height:270px;
+    }
+    .titre-image{
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: all 0.3s;
+        
+    }
+}
+
+.text-services{
+    color: #87CEEB;
+    text-align: justify;
+    padding-top: 20px;
+}
+
+//*** AVIS****//
+.form-group{
+    color:#8B4513;
+}
+.star-rating {
+    direction: rtl;
+    display: inline-flex;
+    font-size: 2rem;
+
+    input[type="radio"] {
+        display: none;
+
+        & + label {
+            color: #ddd;
+            cursor: pointer;
+            font-size: 2rem;
+            transition: color 0.2s;
+
+            &:before {
+                content: "\2605";
+            }
+
+            &:hover,
+            &:hover ~ label,
+            &:checked,
+            &:checked ~ label {
+                color: #ffc107;
+            }
+        }
+    }
+}
+
+//**Connexion**//
+$secondary-text-color: #87CEEB;
+$primary-text-color: #228B22;
+
+
+.btn-primary-custom {
+    background-color: $button-color;
+    color: white;
+    border: none;
+
+    &:hover {
+        background-color: darken($button-color, 10%);
+    }
+}
+
+.text-primary-custom {
+    color: $primary-text-color;
+}
+
+.text-secondary-custom {
+    color: $secondary-text-color;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    padding: 20px;
+}
+
+//**Contact**//
+
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+.btn-primary-custom {
+    background-color: $button-color;
+    color: white;
+    border: none;
+
+    &:hover {
+        background-color: darken($button-color, 10%);
+    }
+}
+
+
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+}
+
+textarea.form-control {
+    resize: none;
 }
