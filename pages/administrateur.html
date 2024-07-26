@@ -1,0 +1,165 @@
+<div class="hero-scene text-center text-white">
+    <div class="hero-scene-content">
+        <h1>Espace administrateur</h1>
+    </div>
+
+    <article>
+        <!-- Registration form -->
+        <div class="container p-4">
+            <form>
+                <h3>Enregistrement d'un nouvel utilisateur</h3>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                        else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                        value="option1" checked>
+                    <label class="form-check-label" for="exampleRadios1">
+                        Vétérinaire
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
+                        value="option2">
+                    <label class="form-check-label" for="exampleRadios2">
+                        Employé
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <div class="text-center pt-4">
+            </div>
+        </div>
+    </article>
+    <article class="container-background">
+        <!-- Habitats form -->
+        <div class="container mt-5">
+            <form>
+                <h3>Espace habitat</h3>
+                <div class="form-group">
+                    <label for="serviceName">Nom du habitat</label>
+                    <textarea class="form-control" id="serviceName" rows="1"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="serviceDescription">Description</label>
+                    <textarea class="form-control" id="serviceDescription" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect2">Animal</label>
+                    <select multiple class="form-control" id="exampleFormControlSelect2">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <div class="form-group  mt-3 mb-3">
+                    <label for="servicePhoto">Télécharger photo: </label>
+                    <p>
+                        <input type="file" class="form-control-file" id="servicePhoto">
+                    </p>
+                </div>
+                <button type="submit" class="btn btn-primary-custom mt-3 mb-3 ">Soumettre</button>
+            </form>
+        </div>
+        <div class="container p-4 ">
+            <div class="text-center pt-4">
+    </article>
+    <article>
+        <!-- Services form -->
+        <div class="container p-4">
+            <div class="container mt-5">
+                <form>
+                    <h3>Espace services</h3>
+                    <div class="form-group">
+                        <label for="serviceName">Nom du service</label>
+                        <textarea class="form-control" id="serviceName" rows="1"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="serviceDescription">Description</label>
+                        <textarea class="form-control" id="serviceDescription" rows="4"></textarea>
+                    </div>
+                    <div class="form-group  mt-3 mb-3">
+                        <label for="servicePhoto">Télécharger photo: </label>
+                        <p>
+                            <input type="file" class="form-control-file" id="servicePhoto">
+                        </p>
+                    </div>
+                    <button type="submit" class="btn btn-primary-custom mt-3 mb-3 ">Soumettre</button>
+                </form>
+            </div>
+        </div>
+    </article>
+    <article class="container-background">
+        <!-- Animals form -->
+        <div class="container mt-5">
+            <form>
+                <h3>Espace animaux</h3>
+                <div class="form-group">
+                    <label for="serviceName">Prénom</label>
+                    <textarea class="form-control" id="serviceName" rows="1"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="serviceDescription">Race</label>
+                    <textarea class="form-control" id="serviceDescription" rows="1"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Habitat</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+                <div class="form-group  mt-3 mb-3">
+                    <label for="servicePhoto">Télécharger photo: </label>
+                    <p>
+                    <input type="file" class="form-control-file" id="servicePhoto">
+                    </p>
+                </div>
+                <button type="submit" class="btn btn-primary-custom mt-3 mb-3 ">Soumettre</button>
+            </form>
+        
+            <div>
+                <h3>Espace vétérinaire</h3>
+                <form> 
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Etat de l'animal</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Nourriture proposé</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+                      </div>
+                      <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Grammage" aria-label="Grammage" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                          <span class="input-group-text" id="basic-addon2">grammes</span>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Date de passage</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+                      </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlTextarea1">Détail de l'état de l'animal (facultative)</label>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                  </form>
+        
+            </div>
+          </div>
+        </div>
+    </article>
+ 

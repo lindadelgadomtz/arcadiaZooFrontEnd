@@ -90,17 +90,17 @@ connected (admin ou vet ou employe)
                     }
                     break;
                 case 'admin':
-                    if (!userConnected || role !== "admin") {
+                    if (!userConnected || role !== "ROLE_MANAGER") {
                         element.classList.add("d-none");
                     }
                     break;
                 case 'employe':
-                    if (!userConnected || role !== "employe") {
+                    if (!userConnected || role !== "ROLE_EMPLOYEE") {
                         element.classList.add("d-none");
                     }
                     break;
                 case 'veterinaire':
-                    if (!userConnected || role !== "veterinaire") {
+                    if (!userConnected || role !== "ROLE_VETERINAIRE") {
                         element.classList.add("d-none");
                     }
                     break;
