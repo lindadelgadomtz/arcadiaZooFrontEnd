@@ -26,6 +26,7 @@ const getRouteByUrl = (url) => {
 
 // Fonction pour charger le contenu de la page
 const LoadContentPage = async () => {
+  document.getElementById("main-page").innerHTML = '<div>LOADER</div>';
   const path = window.location.pathname;
   // Récupération de l'URL actuelle
   const actualRoute = getRouteByUrl(path);
@@ -33,6 +34,10 @@ const LoadContentPage = async () => {
   const html = await fetch(actualRoute.pathHtml).then((data) => data.text());
   // Ajout du contenu HTML à l'élément avec l'ID "main-page"
   document.getElementById("main-page").innerHTML = html;
+
+  //Afficher et masquer les éléments en fonction du rôle
+  console.log('display roles')
+  showAndHideElementsForRoles();
 
   // Ajout du contenu JavaScript
   if (actualRoute.pathJS != "") {
@@ -48,6 +53,8 @@ const LoadContentPage = async () => {
   // Changement du titre de la page
   document.title = actualRoute.title + " - " + websiteName;
 };
+
+
 
 // Fonction pour gérer les événements de routage (clic sur les liens)
 const routeEvent = (event) => {

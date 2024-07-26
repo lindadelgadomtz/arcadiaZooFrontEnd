@@ -8,15 +8,71 @@
     <title>Document</title>
 </head>
 <body>
-    <header> Le menu</header>
+    <header> 
+        <nav class="navbar navbar-expand-lg mr-auto" style="background-color: #FFD700;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/"> 
+            <img src="photos/logoArcadia.png" alt="logo Arcadia Zoo" width="40" height="40" ></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Accueil</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="services">Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="habitats">Habitats</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact">Contact</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="horaires">Horaires</a>
+              </li>
+                <li class="nav-item" data-show="disconnected">
+                <a class="nav-link" href="connexion">Connexion</a>
+              </li>
+              <li class="nav-item" data-show="connected">
+                <button class="nav-link" id="signout-btn">Deconnexion</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav></header>
 
     <main id="main-page"> 
-        <!--le contenu de la page-->
-        <button class="btn btn-primary">Cliquez ici</button>
     </main>
-    <footer> Le footer   </footer>
+    <footer class="text-center text-white d-flex justify-content-around" style="background-color: #8B4513;"> 
+        <div>
+            <a href="https://www.facebook.com/">
+              <i class="bi bi-facebook text-white"></i>
+            </a>
+            <a href="https://x.com/">
+            <i class="bi bi-twitter text-white"></i>
+          </a>
+          <a href="https://www.instagram.com/">
+            <i class="bi bi-instagram text-white"></i>
+          </a>
+        </div>
+        <div>
+            <i class="bi bi-geo"></i>
+            <p>Brocéliande, Bretagne</p>
+        </div>
+        <div>
+            <i class="bi bi-envelope"></i>
+            <p></i>contact@arcadiazoo.fr</p>
+        </div>
+      </footer>
 
+   <script src="js/script.js"></script>
     <script type="module" src="./Router/Router.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", showAndHideElementsForRoles);
+  </script>
 </body>
 </html>
