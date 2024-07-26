@@ -2,37 +2,54 @@ const btnSignin = document.getElementById("btnSignin");
 const mailInput = document.getElementById("mailInput");
 const passwordInput = document.getElementById("passwordInput");
 
-// Verify elements are correctly selected
-console.log(btnSignin, mailInput, passwordInput); 
-
 btnSignin.addEventListener("click", checkCredentials);
 
-function checkCredentials() {
-    // Verify the event listener is firing
-    console.log("Button clicked");
+async function checkCredentials() {
+    // Check that the user exists and get the token
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
-    // Check email and password values
-    console.log("Email:", mailInput.value);
-    console.log("Password:", passwordInput.value);
+    var raw = JSON.stringify({
+        "username": mailInput.value,
+        "password": passwordInput.value
+    });
 
-    if (mailInput.value === "test@mail.com" && passwordInput.value === "123") {
-        alert("Vous êtes connecté");
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
 
-        const token = "lkjsdngfljsqdnglkjsdbglkjqskjgkfjgbqslkfdgbskldfgdfgsdgf";
-        // Verify token is set
-        console.log("Token:", token); 
-        setToken(token); // Ensure setToken is defined and working
-        setCookie(roleCookieName, "admin", 7); // Ensure setCookie is defined and working
+    await fetch("https://127.0.0.1:8000/api/login", requestOptions)
+        .then(response => response.json())
+        .then(result => login(result))
+        .catch(error => console.log('error', error));
+}
 
-         // Call showAndHideElementsForRoles before redirecting
-         showAndHideElementsForRoles();
+function login(response) {
+    console.log('RESPO?SE', response)
+    console.log('RESPO?SEjhefvzeyfvzyefv', response.roles)
 
-        // Verify before redirect
-        console.log("Redirecting to home page");
-        window.location.replace("/");
-    } else {
-        console.log("Invalid credentials"); // Indicate invalid credentials
-        mailInput.classList.add("is-invalid");
-        passwordInput.classList.add("is-invalid");
+    setToken(response.apiToken); // Ensure setToken is defined and working
+    setCookie(roleCookieName, response.roles, 7); // Ensure setCookie is defined and working
+
+    // Call showAndHideElementsForRoles before redirecting
+    showAndHideElementsForRoles();
+
+    // Verify before redirect
+    if (response.roles.includes("ROLE_VETERINAIRE")) {
+            console.log('veterinaire')
+            window.location.replace("/veterinaire");
+        }
+    if (response.roles.includes("ROLE_EMPLOYEE")) {  
+        console.log('emp')     
+            window.location.replace("/administrateur");
+    }
+    if (response.roles.includes("ROLE_MANAGER")) { 
+            console.log('admin')
+            window.location.replace("/administrateur");
+        } else {
+            window.location.replace("/");
     }
 }
