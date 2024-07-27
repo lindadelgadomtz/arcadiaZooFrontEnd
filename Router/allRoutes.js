@@ -4,14 +4,13 @@ import Route from "./Route.js";
 export const allRoutes = [
 new Route("/", "Accueil", "/pages/home.html"),
 new Route("/services", "Nos Services", "/pages/services.html"),
-new Route("/avis", "Avis", "/pages/avis.html", "/js/auth/avis.js" ),
+new Route("/avis", "Avis", "/pages/avis.html", "/js/methods/avis.js"),
 new Route("/connexion", "Connexion", "/pages/connexion.html", "/js/auth/connexion.js"),
 new Route("/contact", "Contact", "/pages/contact.html"),
 new Route("/habitats", "Habitats", "/pages/habitats.html"),
 new Route("/horaires", "Nos horaires", "/pages/horaires.html"),
 new Route("/animaux", "Nos animaux", "/pages/animaux.html"),
-new Route("/administrateur", "Administrateur", "/pages/administrateur.html", "/js/auth/registration.js"),
-new Route("/employee", "Employee", "/pages/employee.html"),
+new Route("/administrateur", "Administrateur", "/pages/administrateur.html"),
 
 ];
 
