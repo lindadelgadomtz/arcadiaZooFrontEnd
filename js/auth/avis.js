@@ -1,13 +1,12 @@
-const btnSubmit = document.getElementById("btnSubmit");
+const btnAvis = document.getElementById("btnAvis");
 const pseudoInput = document.getElementById("pseudoInput");
 const commentInput = document.getElementById("commentInput");
-const ratingInput = document.getElementById("ratingInput");
 
-btnSubmit.addEventListener("click", submitComment);
+btnAvis.addEventListener("click", submitComment);
 
 async function submitComment(event) {
     event.preventDefault();  // Prevent the default form submission behavior
-
+console.log("hola");
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -37,12 +36,12 @@ async function submitComment(event) {
 }
 
 
-/*function displayConfirmation(response) {
-    console.log('RESPO?SEjhefvzeyfvzyefv', response)
-    alert('Merci. Votre commentaire a été pris en compte!')
-}*/
+function displayConfirmation(response) {
+    alert('Merci. Votre commentaire a été pris en compte!');
+    window.location.replace("/"); // Redirect to home after successful submission
+}
 
 function displayError(error) {
-    console.log(error)
-    alert("Une erreure est survenue. Merci d'essayer à nouveau.")
+    alert("Une erreure est survenue. Merci d'essayer à nouveau.");
+    window.location.replace("/avis"); // Redirect to avis page if there's an error
 }
