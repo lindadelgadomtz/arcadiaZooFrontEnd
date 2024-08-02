@@ -20,15 +20,14 @@
                     <input type="password" class="form-control" id="passwordRegistrationInput" placeholder="Password">
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="roleInput1"
-                        value="option1" checked>
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="roleInput1" value="option1"
+                        checked>
                     <label class="form-check-label" for="exampleRadios1">
                         Vétérinaire
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="roleInput2"
-                        value="option2">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="roleInput2" value="option2">
                     <label class="form-check-label" for="exampleRadios2">
                         Employé
                     </label>
@@ -42,33 +41,21 @@
     <article class="container-background">
         <!-- Habitats form -->
         <div class="container mt-5">
-            <form>
+            <form id="habitatsForm" enctype="multipart/form-data">
                 <h3>Espace habitat</h3>
                 <div class="form-group">
-                    <label for="serviceName">Nom du habitat</label>
-                    <textarea class="form-control" id="serviceName" rows="1"></textarea>
+                    <label for="habitatsInput">Nom du habitat</label>
+                    <textarea class="form-control" id="habitatsInput" rows="1"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="serviceDescription">Description</label>
-                    <textarea class="form-control" id="serviceDescription" rows="4"></textarea>
+                    <label for="descriptionInput">Description</label>
+                    <textarea class="form-control" id="descriptionInput" rows="4"></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="exampleFormControlSelect2">Animal</label>
-                    <select multiple class="form-control" id="exampleFormControlSelect2">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
+                <div class="form-group mt-3 mb-3">
+                    <label for="photoInput">Télécharger photo: </label>
+                    <input type="file" class="form-control-file" id="photoInput">
                 </div>
-                <div class="form-group  mt-3 mb-3">
-                    <label for="servicePhoto">Télécharger photo: </label>
-                    <p>
-                        <input type="file" class="form-control-file" id="servicePhoto">
-                    </p>
-                </div>
-                <button type="submit" class="btn btn-primary-custom mt-3 mb-3 ">Soumettre</button>
+                <button type="button" class="btn btn-primary-custom mt-3 mb-3" id="btnHabitats">Soumettre</button>
             </form>
         </div>
         <div class="container p-4 ">
@@ -81,20 +68,20 @@
                 <form>
                     <h3>Espace services</h3>
                     <div class="form-group">
-                        <label for="serviceName">Nom du service</label>
-                        <textarea class="form-control" id="serviceName" rows="1"></textarea>
+                        <label for="servicesInput">Nom du service</label>
+                        <textarea class="form-control" id="servicesInput" rows="1"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="serviceDescription">Description</label>
-                        <textarea class="form-control" id="serviceDescription" rows="4"></textarea>
+                        <label for="servicesDescriptionInput">Description</label>
+                        <textarea class="form-control" id="servicesDescriptionInput" rows="4"></textarea>
                     </div>
                     <div class="form-group  mt-3 mb-3">
-                        <label for="servicePhoto">Télécharger photo: </label>
+                        <label for="servicesPhotoInput">Télécharger photo: </label>
                         <p>
-                            <input type="file" class="form-control-file" id="servicePhoto">
+                            <input type="file" class="form-control-file" id="servicesPhotoInput">
                         </p>
                     </div>
-                    <button type="submit" class="btn btn-primary-custom mt-3 mb-3 ">Soumettre</button>
+                    <button type="button" class="btn btn-primary-custom mt-3 mb-3 " id="btnServices">Soumettre</button>
                 </form>
             </div>
         </div>
@@ -105,61 +92,59 @@
             <form>
                 <h3>Espace animaux</h3>
                 <div class="form-group">
-                    <label for="serviceName">Prénom</label>
-                    <textarea class="form-control" id="serviceName" rows="1"></textarea>
+                    <label for="animalInput">Prénom</label>
+                    <textarea class="form-control" id="animalInput" rows="1"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="serviceDescription">Race</label>
-                    <textarea class="form-control" id="serviceDescription" rows="1"></textarea>
+                    <label for="raceSelectionInput">Race</label>
+                    <select class="form-select" aria-label="Default select example" id="raceSelectionInput"></select>
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlSelect1">Habitat</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
+                    <label for="habitatSelectionInput">Habitat</label>
+                    <select class="form-select" id="habitatSelectionInput">
                     </select>
-                  </div>
+                </div>
                 <div class="form-group  mt-3 mb-3">
-                    <label for="servicePhoto">Télécharger photo: </label>
+                    <label for="animalPhotoInput">Télécharger photo: </label>
                     <p>
-                    <input type="file" class="form-control-file" id="servicePhoto">
+                        <input type="file" class="form-control-file" id="animalPhotoInput">
                     </p>
                 </div>
-                <button type="submit" class="btn btn-primary-custom mt-3 mb-3 ">Soumettre</button>
+                <button type="button" class="btn btn-primary-custom mt-3 mb-3" id="btnAnimal">Soumettre</button>
             </form>
-        
+
             <div>
+                <!-- Espace véterinare form -->
                 <h3>Espace vétérinaire</h3>
-                <form> 
+                <form>
                     <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Etat de l'animal</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Nourriture proposé</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
-                      </div>
-                      <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Grammage" aria-label="Grammage" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                          <span class="input-group-text" id="basic-addon2">grammes</span>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Date de passage</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
-                      </div>
-                    <div class="form-group">
-                      <label for="exampleFormControlTextarea1">Détail de l'état de l'animal (facultative)</label>
-                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <label for="animalSelectionInput">Animal</label>
+                        <select class="form-select" id="animalSelectionInput">
+                        </select>
                     </div>
-                  </form>
-        
+                    <div class="form-group">
+                        <label for="etatInput">Etat de l'animal</label>
+                        <textarea class="form-control" id="etatInput" rows="1"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="nourritureInput">Nourriture proposé</label>
+                        <textarea class="form-control" id="nourritureInput" rows="1"></textarea>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="grammageInput" placeholder="Grammage" aria-label="Grammage"
+                            aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2">grammes</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="detailAnimalInput">Détail de l'état de l'animal (facultative)</label>
+                        <textarea class="form-control" id="detailAnimalInput" rows="3"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-primary-custom mt-3 mb-3" id="btnRapport">Soumettre</button>
+                </form>
+
             </div>
-          </div>
         </div>
-    </article>
- 
+</div>
+</article>
