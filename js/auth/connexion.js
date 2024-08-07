@@ -21,7 +21,7 @@ async function checkCredentials() {
         redirect: 'follow'
     };
 
-    await fetch("https://127.0.0.1:8000/api/login", requestOptions)
+    await fetch(apiUrl+"login", requestOptions)
         .then(response => response.json())
         .then(result => login(result))
         .catch(error => console.log('error', error));

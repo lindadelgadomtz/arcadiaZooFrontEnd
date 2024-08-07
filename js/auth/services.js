@@ -1,51 +1,68 @@
-const btnHabitats = document.getElementById("btnHabitats");
-const habitatsInput = document.getElementById("habitatsInput");
-const habitatsForm = document.getElementById("habitatsForm");
-const descriptionInput = document.getElementById("descriptionInput");
-const photoInput = document.getElementById("photoInput");
+const urlParams = new URLSearchParams(window.location.search);
+const serviceId = urlParams.get('service');
 
- // PhotoInput
+console.log(serviceId);
 
-btnHabitats.addEventListener("click", createHabitats);
-
-
-async function createHabitats() {   
-    event.preventDefault(); 
-    var formData = new FormData(habitatsForm);
-
-    var myHeaders = new Headers();
-myHeaders.append("Content-Type", "application/json");
-
-var raw = JSON.stringify({
-  "nom": habitatsInput.value,
-  "description": descriptionInput.value
-});
-
-    var requestOptions = {
-        method: "POST",
-        body: formData,
-        redirect: "follow"
-    };
-    
-
-await fetch("https://127.0.0.1:8000/api/habitat", requestOptions)
-.then(response => {
-    if (!response.ok) {
-        throw new Error('Network response was not ok ' + response.statusText);
-    }
-    return response.text();
-})
-.then(result => displayConfirmation(result))
-.catch(error => displayError(error));
+if (serviceId) {
+    fetch(`https://127.0.0.1:8000/api/service/${serviceId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                console.error('Error:', data.error);
+            } else if (data.message) {
+                console.log(data.message);
+            } else {
+                console.log(data);
+                injectServices(data);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+} else {
+    // service.js
+    fetch('https://127.0.0.1:8000/api/service')
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                console.error(`Error: ${data.error}`);
+            } else if (data.message) {
+                console.log(data.message);
+            } else {
+                injectServices(data);
+            }
+        })
+        .catch(error => console.error(`Error: ${error}`));
 }
 
 
-function displayConfirmation(response) {
-alert("Merci. L'habitat a bien été ajouté!");
-window.location.replace("/administrateur"); // Redirect to administrateur after successful submission
+
+function injectServices(services) {
+    const container = document.getElementById('services');
+    console.log(services);
+
+    services.forEach(service => {
+        const serviceElement = document.createElement('div');
+        serviceElement.classList.add('service');
+
+        // Directly access the gallery path
+        const gallerySrc = service.gallery ? service.gallery.replace('/img/', '/') : '';
+
+        // Check if service.nom is defined
+        const serviceNom = service.nom ? service.nom : 'No name provided';
+
+        serviceElement.innerHTML = `
+            <div class="col">
+                    <div class="card">
+                        <img src="https://127.0.0.1:8000/asset${gallerySrc}" class="card-img-top" alt="${serviceNom}">
+                        <div class="card-body">
+                            <h5 class="card-title">${serviceNom}</h5>
+                            <p class="card-text">${service.description}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        `;
+
+        container.appendChild(serviceElement);
+    });
 }
 
-function displayError(error) {
-alert("Une erreure est survenue. Merci d'essayer à nouveau.");
-window.location.replace("/administrateur"); // Redirect to avis page if there's an error
-}
