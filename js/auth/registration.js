@@ -35,7 +35,7 @@ async function createUser(event) {
     redirect: "follow"
   };
 
-  await fetch("https://127.0.0.1:8000/api/registration", requestOptions)
+  await fetch(apiUrl+"registration", requestOptions)
     .then((response) => response.text())
     .then((result) => displayConfirmation(result))
     .catch((error) => displayError(error));
@@ -81,7 +81,7 @@ async function createHabitats(event) {
     redirect: "follow"
   };
 
-  await fetch("https://127.0.0.1:8000/api/habitat", requestOptions)
+  await fetch(apiUrl+"habitat", requestOptions)
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok ' + response.statusText);
@@ -117,7 +117,7 @@ async function uploadPicture(result) {
     redirect: "follow"
   };
 
-  await fetch("https://127.0.0.1:8000/api/gallery", requestOptions)
+  await fetch(apiUrl+"gallery", requestOptions)
     .then((response) => {
       if (!response.ok) {
         throw new Error('Network response was not ok ' + response.statusText);
@@ -148,7 +148,7 @@ btnAnimal.addEventListener("click", createAnimal);
 async function fetchRaces() {
   console.log('race')
   try {
-    const response = await fetch("https://127.0.0.1:8000/api/race");
+    const response = await fetch(apiUrl+"race");
     const races = await response.json();
     populateDropdown("raceSelectionInput", races);
   } catch (error) {
@@ -158,7 +158,7 @@ async function fetchRaces() {
 
 async function fetchHabitats() {
   try {
-    const response = await fetch("https://127.0.0.1:8000/api/habitat");
+    const response = await fetch(apiUrl+"habitat");
     const habitats = await response.json();
     populateDropdown("habitatSelectionInput", habitats);
   } catch (error) {
@@ -206,7 +206,7 @@ async function createAnimal(event) {
   };
 
   try {
-    await fetch("https://127.0.0.1:8000/api/animal", requestOptions)
+    await fetch(apiUrl+"animal", requestOptions)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok ' + response.statusText);
@@ -250,7 +250,7 @@ async function uploadAnimalPicture(result) {
     redirect: "follow"
   };
 
-  await fetch("https://127.0.0.1:8000/api/gallery", requestOptions)
+  await fetch(apiUrl+"gallery", requestOptions)
     .then((response) => {
       if (!response.ok) {
         throw new Error('Network response was not ok ' + response.statusText);
@@ -294,7 +294,7 @@ async function createServices(result) {
     redirect: "follow"
   };
 
-  await fetch("https://127.0.0.1:8000/api/service", requestOptions)
+  await fetch(apiUrl+"service", requestOptions)
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok ' + response.statusText);
@@ -329,7 +329,7 @@ async function uploadServicesPicture(event) {
     redirect: "follow"
   };
 
-  await fetch("https://127.0.0.1:8000/api/gallery", requestOptions)
+  await fetch(apiUrl+"gallery", requestOptions)
     .then((response) => {
       if (!response.ok) {
         throw new Error('Network response was not ok ' + response.statusText);
@@ -357,7 +357,7 @@ async function fetchAnimals() {
 
   try {
 
-    const response = await fetch("https://127.0.0.1:8000/api/animal");
+    const response = await fetch(apiUrl+"animal");
     const animals = await response.json();
     populateAnimalDropdown("animalSelectionInput", animals);
   } catch (error) {
@@ -431,7 +431,7 @@ async function createRapport(event) {
 
 
   try {
-    await fetch("https://127.0.0.1:8000/api/rapportVeterinaire", requestOptions)
+    await fetch(apiUrl+"rapportVeterinaire", requestOptions)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok ' + response.statusText);

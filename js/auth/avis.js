@@ -24,7 +24,7 @@ console.log("hola");
         body: raw,
     };
 
-    await fetch("https://127.0.0.1:8000/api/avis", requestOptions)
+    await fetch(apiUrl+"avis", requestOptions)
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
