@@ -13,6 +13,8 @@ new Route("/animaux", "Nos animaux", "/pages/animaux.html"),
 new Route("/administrateur", "Administrateur", "/pages/administrateur.html", "/js/auth/registration.js"),
 new Route("/employee", "Employee", "/pages/employee.html", "/js/auth/employee.js"),
 new Route("/validatedAvis", "Validated Avis", "/pages/validatedAvis.html", "/js/auth/validatedAvis.js"),
+new Route("/veterinaire", "Veterinaire", "/pages/veterinaire.html", "/js/auth/veterinaire.js"),
+
 ];
 
 //Le titre s'affiche comme ceci : Route.titre - websitename
