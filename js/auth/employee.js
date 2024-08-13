@@ -7,7 +7,7 @@
 loadAvis();
 // validateAvis();
 // invalidateAvis();
-// loadServices();
+loadServices();
 // setupFeedingForm();
 
 function loadAvis() {
@@ -15,13 +15,13 @@ function loadAvis() {
         .then(response => response.json())
         .then(avis => {
             const avisContainer = document.getElementById('avis');
-            avis.forEach(avis => {  
+            avis.forEach(avis => {
                 const avisElement = document.createElement('div');
                 avisElement.classList.add('review');
                 avisElement.innerHTML = `
                     <p>${avis.pseudo}: ${avis.commentaire}</p>
                     <button onclick="validateAvis(${avis.id})" class="btn btn-primary">Validate</button>
-                    <button onclick="invalidateAvis(${avis.id})" class="btn btn-secondary">Invalidate</button>
+                    <button onclick="invalidateAvis(${avis.id})" class="btn btn-primary">Invalidate</button>
                 `;
                 avisContainer.appendChild(avisElement);
             });
@@ -42,27 +42,6 @@ function invalidateAvis(id) {
         .catch((error) => displayError(error));
 }
 
-function loadServices() {
-    fetch('/api/services')
-        .then(response => response.json())
-        .then(services => {
-            const servicesContainer = document.getElementById('services');
-            services.forEach(service => {
-                const serviceElement = document.createElement('div');
-                serviceElement.classList.add('service');
-                serviceElement.innerHTML = `
-                    <h3>${service.nom}</h3>
-                    <p>${service.description}</p>
-                    <button onclick="editService(${service.id})">Edit</button>
-                `;
-                servicesContainer.appendChild(serviceElement);
-            });
-        });
-}
-
-function editService(id) {
-    // Logic to edit service
-}
 
 function setupFeedingForm() {
     const feedingForm = document.getElementById('feeding-form');
@@ -84,90 +63,173 @@ function setupFeedingForm() {
 function displayConfirmation(response) {
     alert('Enregistré avec succès!');
     window.location.replace("/employee");
-  }
-  
-  function displayError(error) {
-    alert("Une erreur est survenue. Merci d'essayer à nouveau.");
-    window.location.replace("/employee");
-  }
-  
-
-
-
-  /******************************* SERVICES REGISTRATION ********************************/
-const btnServices = document.getElementById("btnServices");
-const servicesInput = document.getElementById("servicesInput");
-const servicesDescriptionInput = document.getElementById("servicesDescriptionInput");
-const servicesPhotoInput = document.getElementById("servicesPhotoInput"); // ADD THE PICTURE INPUT
-
-btnServices.addEventListener("click", uploadServicesPicture);
-
-async function createServices(result) {
-
-  var myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-
-  var raw = JSON.stringify({
-    "nom": servicesInput.value,
-    "description": servicesDescriptionInput.value,
-    "createdAt": "2024-07-18T14:30:00Z",
-    "gallery": result.id
-  });
-
-  const requestOptions = {
-    method: "POST",
-    headers: myHeaders,
-    body: raw,
-    redirect: "follow"
-  };
-
-  await fetch(apiUrl+"service", requestOptions)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok ' + response.statusText);
-      }
-      return response.json(); // Parse as JSON
-    })
-    .then(result => displayConfirmation(result))
-    .catch(error => displayError(error));
-}
-
-function displayConfirmation(response) {
-  alert("Merci. L'habitat a bien été ajouté!");
-  window.location.replace("/administrateur"); // Redirect to administrateur after successful submission
 }
 
 function displayError(error) {
-  alert("Une erreure est survenue. Merci d'essayer à nouveau.");
-  console.error(error); // Log the error for debugging
-  window.location.replace("/administrateur"); // Redirect to avis page if there's an error
+    alert("Une erreur est survenue. Merci d'essayer à nouveau.");
+    window.location.replace("/employee");
 }
 
-async function uploadServicesPicture(event) {
-  event.preventDefault();
 
-  const formdata = new FormData();
-  formdata.append("title", servicesInput.value);
-  formdata.append("image", servicesPhotoInput.files[0]);
 
-  const requestOptions = {
-    method: "POST",
-    body: formdata,
-    redirect: "follow"
-  };
 
-  await fetch(apiUrl+"gallery", requestOptions)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok ' + response.statusText);
-      }
-      return response.json(); // Parse as JSON
-    })
-    .then((result) => createServices(result))
-    .catch((error) => {
-      console.error('Error:', error); // Log the error for debugging
-      displayError(error);
+/******************************* SERVICES UPDATES ********************************/
+const urlParams = new URLSearchParams(window.location.search);
+const serviceId = urlParams.get('service');
+
+
+async function loadServices() {
+    try {
+        const response = await fetch('https://127.0.0.1:8000/api/service');
+        const services = await response.json();
+        injectServices(services);
+    } catch (error) {
+        console.error('Error loading services:', error);
+    }
+}
+
+function injectServices(services) {
+    const container = document.getElementById('services');
+    container.innerHTML = ''; // Clear the container before adding new services
+
+    services.forEach(service => {
+        const serviceElement = document.createElement('div');
+        serviceElement.classList.add('service');
+
+        const gallerySrc = service.gallery ? service.gallery.replace('/img/', '/') : '';
+        const serviceNom = service.nom || 'No name provided';
+
+        serviceElement.innerHTML = `
+            <div class="col">
+                <div class="card" style="width: 16rem;">
+                    <img src="https://127.0.0.1:8000/asset${gallerySrc}" class="card-img-top" alt="${serviceNom}">
+                    <div class="card-body">
+                        <h5 class="card-title">${serviceNom}</h5>
+                        <p class="card-text">${service.description}</p>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="addServiceId(${service.id})">Edit</button>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        container.appendChild(serviceElement);
     });
 }
 
+function addServiceId(id) {
+    var searchParams = new URLSearchParams(window.location.search);
+    searchParams.set("service", id);
+    // Met à jour l'URL sans recharger la page
+    const newUrl = window.location.pathname + '?' + searchParams.toString();
+    window.history.replaceState(null, '', newUrl);
+}
+
+const servicesInput = document.getElementById("servicesInput");
+const servicesDescriptionInput = document.getElementById("servicesDescriptionInput");
+const servicesPhotoInput = document.getElementById("servicesPhotoInput");
+
+async function editService() {
+    console.log('editttt')
+    const searchParams = new URLSearchParams(window.location.search);
+    const id = searchParams.get('service');
+    console.log('Service ID:', id);
+
+    if ((!servicesInput.value && !servicesDescriptionInput.value) && !servicesPhotoInput.files[0]){
+        alert('Please fill in either the service name/description or upload a photo.');
+        return;
+        
+    };
+
+    try {
+        if(servicesPhotoInput.files[0]){
+            await editServicePhoto(id);
+        }
+
+        if(servicesInput.value || servicesDescriptionInput.value){
+            editInputDescription(id);
+        }
+        
+    } catch (error) {
+        console.error('Error editing service details:', error);
+    }
+
+    async function editServicePhoto(event){
+        const formdata = new FormData();
+        formdata.append("title", servicesInput.value);
+        formdata.append("image", servicesPhotoInput.files[0]);
+    
+        const requestOptions = {
+        method: "POST",
+        body: formdata,
+        redirect: "follow"
+        };
+    
+        await fetch(apiUrl+`gallery/${id}`, requestOptions)
+        .then((response) => response.json())
+        .then((result) => editInputDescription(id, result.id))
+        .catch((error) => console.error(error));
+    }
+
+    function editInputDescription(id) {
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = JSON.stringify({
+            ...servicesInput.value && { "nom": servicesInput.value },
+            ...servicesDescriptionInput.value && { "description": servicesDescriptionInput.value },
+            "createdAt": "2024-07-18T14:30:00Z",
+        });
+
+        const requestOptions = {
+            method: "PUT",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow"
+        };
+
+        fetch(`https://127.0.0.1:8000/api/service/${id}`, requestOptions)
+            .then((response) => response.text(editInputDescription))
+            .then((result) => window.location.reload())
+            .catch((error) => console.error(error));
+    }
+
+}
+
+
+async function deleteService() {
+    const searchParams = new URLSearchParams(window.location.search);
+    const id = searchParams.get('service');
+
+    try {
+        const response = await fetch(apiUrl+`service/${id}`, {
+            method: 'DELETE'
+        });
+
+        if (response.ok) {
+            loadServices();
+        } else {
+            alert('Failed to delete service.');
+        }
+    } catch (error) {
+        console.error('Error deleting service:', error);
+        alert('Failed to delete service.');
+    }
+}
+
+(async () => {
+        try {
+            const response = await fetch('https://127.0.0.1:8000/api/service');
+            const data = await response.json();
+
+            if (data.error) {
+                console.error(`Error: ${data.error}`);
+            } else if (data.message) {
+                console.log(data.message);
+            } else {
+                injectServices(data);
+            }
+        } catch (error) {
+            console.error(`Error: ${error}`);
+        }
+    })();
 

@@ -306,7 +306,7 @@ async function createServices(result) {
 }
 
 function displayConfirmation(response) {
-  alert("Merci. L'habitat a bien été ajouté!");
+  alert("Merci. Le service a bien été ajouté!");
   window.location.replace("/administrateur"); // Redirect to administrateur after successful submission
 }
 
