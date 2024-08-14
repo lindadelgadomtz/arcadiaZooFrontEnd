@@ -262,7 +262,49 @@ async function uploadAnimalPicture(result) {
       console.error('Error:', error); // Log the error for debugging
       displayError(error);
     });
+  
+  }
+
+
+
+/****************************** RACES REGISTRATION   ********************************/
+const btnNouvelleRace = document.getElementById("btnNouvelleRace");
+const nouvelleRaceInput = document.getElementById("nouvelleRaceInput");
+
+btnNouvelleRace.addEventListener("click", createRace);
+
+async function createRace(){
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  
+  var raw = JSON.stringify({
+    "label": nouvelleRaceInput.value
+  });
+  
+  var requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow"
+  };
+  
+  await fetch(apiUrl+"race", requestOptions)
+    .then((response) => response.text())
+    .then((result) => displayConfirmation(result))
+    .catch((error) => displayError(error));
+
 }
+
+function displayConfirmation(response) {
+  alert('Race enregistré avec succès!');
+  window.location.replace("/administrateur"); // Redirect to home after successful registration
+}
+
+function displayError(error) {
+  alert("Une erreur est survenue. Merci d'essayer à nouveau.");
+}
+
+
 
 
 
