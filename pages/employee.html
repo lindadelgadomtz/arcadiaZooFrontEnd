@@ -1,60 +1,62 @@
 <div class="body-avis hero-scene text-center text-white">
-    <div class="hero-scene-content">
-        <h1> Espace employee</h1>
-    </div>
+  <div class="hero-scene-content">
+      <h1>Espace Employee</h1>
+  </div>
 </div>
+
 <!-- employee_dashboard.html -->
 <div id="employee-dashboard">
-    <div id="avis-dashboard">
-        <h2>Review Management</h2>
-        <div id="avis"></div>
-    </div>
-    <div id="service-management">
-        <h2>Service Management</h2>
-    </div>
-    <div class="container mt-5">
-        <div id="services" class="row row-cols-1 row-cols-md-3 g-4">
-        </div>
-
-        <!-- Edit Service Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editServiceModalLabel">Edit Service</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="editServiceForm">
-            <div class="mb-3">
-              <label for="serviceName" class="form-label">Service Name</label>
-              <input type="text" class="form-control" id="servicesInput" required>
-            </div>
-            <div class="mb-3">
-              <label for="serviceDescription" class="form-label">Description</label>
-              <textarea class="form-control" id="servicesDescriptionInput" rows="3" required></textarea>
-            </div>
-            <div class="mb-3">
-              <label for="serviceImage" class="form-label">Service Image</label>
-              <input type="file" class="form-control" id="servicesPhotoInput">
-            </div>
-            <input type="hidden" id="serviceId">
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-danger" onclick="deleteService()">Delete</button>
-          <button type="button" class="btn btn-primary" onclick="editService()">Save changes</button>
-        </div>
-      </div>
-    </div>
+  <div id="avis-dashboard">
+      <h2>Review Management</h2>
+      <div id="avis"></div>
   </div>
-  
-       </div>    
-    <div id="feeding-management">
-      <h3>Ajouter la consommation de nourriture</h3>
+
+  <div id="service-management">
+      <h2>Service Management</h2>
+  </div>
+
+  <div class="container mt-5">
+      <div id="services" class="row row-cols-1 row-cols-md-3 g-4"></div>
+
+      <!-- Edit Service Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="editServiceModalLabel">Edit Service</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      <form id="editServiceForm">
+                          <div class="mb-3">
+                              <label for="serviceName" class="form-label">Service Name</label>
+                              <input type="text" class="form-control" id="servicesInput" required>
+                          </div>
+                          <div class="mb-3">
+                              <label for="serviceDescription" class="form-label">Description</label>
+                              <textarea class="form-control" id="servicesDescriptionInput" rows="3" required></textarea>
+                          </div>
+                          <div class="mb-3">
+                              <label for="serviceImage" class="form-label">Service Image</label>
+                              <input type="file" class="form-control" id="servicesPhotoInput">
+                          </div>
+                          <input type="hidden" id="serviceId">
+                      </form>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-danger" onclick="deleteService()">Delete</button>
+                      <button type="button" class="btn btn-primary" onclick="editService()">Save changes</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div id="feeding-management">
+      <h3>Ajouter la Consommation de Nourriture</h3>
       <div id="feedings"></div>
-        <div>    
+      <div>
           <form id="employeeFoodLogForm">
               <div class="form-group">
                   <label for="animalSelectionInput">Animal</label>
@@ -65,7 +67,7 @@
                   <input type="datetime-local" class="form-control" id="datetimeInput">
               </div>
               <div class="form-group">
-                  <label for="nourritureInput">Nourriture donnée</label>
+                  <label for="nourritureInput">Nourriture Donnée</label>
                   <textarea class="form-control" id="nourritureInput" rows="1"></textarea>
               </div>
               <div class="input-group mb-3">
@@ -77,5 +79,5 @@
               <button type="button" class="btn btn-primary-custom mt-3 mb-3" id="btnSubmitFoodLog">Soumettre</button>
           </form>
       </div>
-      
+  </div>
 </div>

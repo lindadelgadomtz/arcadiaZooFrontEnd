@@ -237,7 +237,6 @@ async function deleteService() {
 
 fetchAnimals();
 
-
 document.getElementById("btnSubmitFoodLog").addEventListener("click", createFoodLog);
 
 async function fetchAnimals() {
@@ -250,8 +249,6 @@ async function fetchAnimals() {
     }
 }
 
-
-
 function populateAnimalDropdown(dropdownId, items) {
     const dropdown = document.getElementById(dropdownId);
     dropdown.innerHTML = "";
@@ -263,8 +260,6 @@ function populateAnimalDropdown(dropdownId, items) {
     });
 }
 
-
-
 async function createFoodLog(event) {
     event.preventDefault();
 
@@ -274,13 +269,16 @@ async function createFoodLog(event) {
     const grammageInput = document.getElementById("grammageInput").value;
     const userSelectionInput = getCookie(userIdCookieName);
 
-
     const payload = {
-        "animal_id": animalSelectionInput,
-        "user_id": userSelectionInput,
-        "datetime": datetimeInput,
+        "date": datetimeInput,
         "nourriture": nourritureInput,
-        "nourriture_grammage": grammageInput
+        "nourriture_grammage_emp": parseInt(grammageInput),
+        "animal": {
+            "id": parseInt(animalSelectionInput),
+        },
+        "user": {
+            "id": parseInt(userSelectionInput),
+        }
     };
 
     try {
@@ -293,9 +291,12 @@ async function createFoodLog(event) {
             alert("Nourriture ajoutée avec succès!");
             window.location.reload("/employee");
         } else {
+            const errorData = await response.json();
+            console.error("Server responded with:", errorData);
             alert("Erreur lors de l'ajout de la nourriture.");
         }
     } catch (error) {
         console.error("Error creating food log:", error);
     }
 }
+
