@@ -8,7 +8,7 @@ loadAvis();
 // validateAvis();
 // invalidateAvis();
 loadServices();
-// setupFeedingForm();
+
 
 function loadAvis() {
     fetch('https://127.0.0.1:8000/api/avis')
@@ -233,3 +233,69 @@ async function deleteService() {
         }
     })();
 
+/*******************************************ANIMAL FEEDING MANAGEMENT********************************************************/
+
+fetchAnimals();
+
+
+document.getElementById("btnSubmitFoodLog").addEventListener("click", createFoodLog);
+
+async function fetchAnimals() {
+    try {
+        const response = await fetch(apiUrl + "animal");
+        const animals = await response.json();
+        populateAnimalDropdown("animalSelectionInput", animals);
+    } catch (error) {
+        console.error("Error fetching animals:", error);
+    }
+}
+
+
+
+function populateAnimalDropdown(dropdownId, items) {
+    const dropdown = document.getElementById(dropdownId);
+    dropdown.innerHTML = "";
+    items.forEach(item => {
+        const option = document.createElement("option");
+        option.value = item.id;
+        option.textContent = `${item.prenom}, ${item.race.label}` || item.id;
+        dropdown.appendChild(option);
+    });
+}
+
+
+
+async function createFoodLog(event) {
+    event.preventDefault();
+
+    const animalSelectionInput = document.getElementById("animalSelectionInput").value;
+    const datetimeInput = document.getElementById("datetimeInput").value;
+    const nourritureInput = document.getElementById("nourritureInput").value;
+    const grammageInput = document.getElementById("grammageInput").value;
+    const userSelectionInput = getCookie(userIdCookieName);
+
+
+    const payload = {
+        "animal_id": animalSelectionInput,
+        "user_id": userSelectionInput,
+        "datetime": datetimeInput,
+        "nourriture": nourritureInput,
+        "nourriture_grammage": grammageInput
+    };
+
+    try {
+        const response = await fetch(apiUrl + "animalFeeding", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+        if (response.ok) {
+            alert("Nourriture ajoutée avec succès!");
+            window.location.reload("/employee");
+        } else {
+            alert("Erreur lors de l'ajout de la nourriture.");
+        }
+    } catch (error) {
+        console.error("Error creating food log:", error);
+    }
+}

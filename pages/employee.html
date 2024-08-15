@@ -1,6 +1,6 @@
 <div class="body-avis hero-scene text-center text-white">
     <div class="hero-scene-content">
-        <h1> Nous contacter</h1>
+        <h1> Espace employee</h1>
     </div>
 </div>
 <!-- employee_dashboard.html -->
@@ -52,6 +52,30 @@
   
        </div>    
     <div id="feeding-management">
-        <h2>Feeding Management</h2>
-        <div id="feedings"></div>
+      <h3>Ajouter la consommation de nourriture</h3>
+      <div id="feedings"></div>
+        <div>    
+          <form id="employeeFoodLogForm">
+              <div class="form-group">
+                  <label for="animalSelectionInput">Animal</label>
+                  <select class="form-select" id="animalSelectionInput"></select>
+              </div>
+              <div class="form-group">
+                  <label for="datetimeInput">Date et Heure</label>
+                  <input type="datetime-local" class="form-control" id="datetimeInput">
+              </div>
+              <div class="form-group">
+                  <label for="nourritureInput">Nourriture donnée</label>
+                  <textarea class="form-control" id="nourritureInput" rows="1"></textarea>
+              </div>
+              <div class="input-group mb-3">
+                  <input type="text" class="form-control" id="grammageInput" placeholder="Grammage">
+                  <div class="input-group-append">
+                      <span class="input-group-text">grammes</span>
+                  </div>
+              </div>
+              <button type="button" class="btn btn-primary-custom mt-3 mb-3" id="btnSubmitFoodLog">Soumettre</button>
+          </form>
+      </div>
+      
 </div>

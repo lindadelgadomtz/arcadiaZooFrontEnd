@@ -28,28 +28,28 @@ async function checkCredentials() {
 }
 
 function login(response) {
-    console.log('RESPO?SE', response)
-    console.log('RESPO?SEjhefvzeyfvzyefv', response.roles)
+    console.log('RESPONSE', response)
+    console.log('USER ROLES', response.roles)
 
     setToken(response.apiToken); // Ensure setToken is defined and working
     setCookie(roleCookieName, response.roles, 7); // Ensure setCookie is defined and working
+    setCookie(userIdCookieName, response.username, 7); // Ensure setCookie is defined and working
 
     // Call showAndHideElementsForRoles before redirecting
     showAndHideElementsForRoles();
 
-    // Verify before redirect
-    if (response.roles.includes("ROLE_VETERINAIRE")) {
-            console.log('veterinaire')
-            window.location.replace("/veterinaire");
-        }
-    if (response.roles.includes("ROLE_EMPLOYEE")) {  
-        console.log('emp')     
-            window.location.replace("/administrateur");
-    }
-    if (response.roles.includes("ROLE_MANAGER")) { 
-            console.log('admin')
-            window.location.replace("/administrateur");
-        } else {
-            window.location.replace("/");
-    }
+   // Redirection logic based on roles
+   if (response.roles.includes("ROLE_VETERINAIRE")) {
+    console.log('Redirecting to veterinaire');
+    window.location.replace("/veterinaire");
+} else if (response.roles.includes("ROLE_EMPLOYEE")) {  
+    console.log('Redirecting to employee');     
+    window.location.replace("/employee");
+} else if (response.roles.includes("ROLE_MANAGER")) { 
+    console.log('Redirecting to administrateur');
+    window.location.replace("/administrateur");
+} else {
+    console.log('Redirecting to home');
+    window.location.replace("/");
+}
 }

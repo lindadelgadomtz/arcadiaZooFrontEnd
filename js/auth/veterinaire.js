@@ -33,48 +33,26 @@ function populateAnimalDropdown(dropdownId, items) {
 
 async function createRapport(event) {
   event.preventDefault(); // Prevent the default form submission behavior
-  console.log("create Rapport", createRapport);
 
   const animalSelectionInput = document.getElementById("animalSelectionInput");
   const etatInput = document.getElementById("etatInput");
   const nourritureInput = document.getElementById("nourritureInput");
   const grammageInput = document.getElementById("grammageInput");
   const detailAnimalInput = document.getElementById("detailAnimalInput");
-  const raceSelectionInput = document.getElementById("raceSelectionInput");
-  const habitatSelectionInput = document.getElementById("habitatSelectionInput");
-
-  console.log("Inputs collected:");
-  console.log("Animal Selection:", animalSelectionInput.value);
-  console.log("Etat:", etatInput.value);
-  console.log("Nourriture:", nourritureInput.value);
-  console.log("Grammage:", grammageInput.value);
-  console.log("Detail Animal:", detailAnimalInput.value);
-  console.log("Race Selection:", raceSelectionInput.value);
-  console.log("Habitat Selection:", habitatSelectionInput.value);
 
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
   const raw = JSON.stringify({
-    "date": "2024-07-18",
+    "date": "2024-07-18", // Ensure this date is dynamic if needed
     "detail": etatInput.value,
     "animal": {
       "id": animalSelectionInput.value,
-      "race": {
-        "id": raceSelectionInput.value,
-      },
-      "habitat": {
-        "id": habitatSelectionInput.value,
-      }
     },
     "etat_animal": detailAnimalInput.value,
     "nourriture": nourritureInput.value,
     "nourriture_grammage": grammageInput.value
-
   });
-
-  console.log("Request payload:", raw);
-
 
   const requestOptions = {
     method: "POST",
@@ -83,28 +61,30 @@ async function createRapport(event) {
     redirect: "follow"
   };
 
-
   try {
-    await fetch(apiUrl+"rapportVeterinaire", requestOptions)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok ' + response.statusText);
-        }
-        return response.json(); // Parse as JSON
-      })
-      .catch(error => displayError(error));
+    const response = await fetch(apiUrl + "rapportVeterinaire", requestOptions);
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok ' + response.statusText);
+    }
+
+    const result = await response.json(); // Parse the JSON from the response
+
+    displayConfirmation(result); // Call displayConfirmation on success
+
   } catch (error) {
-    console.error("Error fetching races:", error);
+    displayError(error);
   }
 }
 
+
 function displayConfirmation(response) {
   alert("Merci. L'rapport a bien été ajouté!");
-  window.location.replace("/administrateur"); // Redirect to administrateur after successful submission
+  window.location.replace("/veterinaire"); // Redirect to administrateur after successful submission
 }
 
 function displayError(error) {
   alert("Une erreure est survenue. Merci d'essayer à nouveau.");
   console.error(error); // Log the error for debugging
-  window.location.replace("/administrateur"); // Redirect to administrateur if there's an error
+  window.location.replace("/veterinaire"); // Redirect to administrateur if there's an error
 }
