@@ -148,6 +148,7 @@ function displayResults(data) {
       return;
   }
 
+  console.log(data);
   // Create a section for veterinary reports
   const vetReportsSection = document.createElement('div');
   vetReportsSection.classList.add('result');
@@ -184,15 +185,15 @@ function displayResults(data) {
       <table>
           <thead>
               <tr>
-                  <th>Food Type</th>
-                  <th>Amount</th>
+                  <th>Nourriture</th>
+                  <th>Grammage</th>
               </tr>
           </thead>
           <tbody>
               ${data.animalFeedings.map(feeding => `
                   <tr>
-                      <td>${feeding.food_type}</td>
-                      <td>${feeding.amount}g</td>
+                      <td>${feeding.nourriture}</td>
+                      <td>${feeding.nourriture_grammage_emp}g</td>
                   </tr>
               `).join('')}
           </tbody>
