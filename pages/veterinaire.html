@@ -85,8 +85,10 @@
 
     <!-- Form to select an animal by ID -->
     <form id="animalForm">
-        <label for="animalId">Enter Animal ID:</label>
-        <input type="number" id="animalId" name="animalId" required>
+        <label for="animalCompareSelectionInput">Select Animal:</label>
+        <select id="animalCompareSelectionInput" name="animalCompareSelectionInput" required>
+            <!-- Options will be populated here -->
+        </select>
     
         <label for="date">Select Date:</label>
         <input type="date" id="date" name="date" required>
@@ -98,8 +100,5 @@
     <div id="resultsContainer" class="result-container">
         <!-- Results will be inserted here -->
     </div>
-
-    <script src="app.js"></script>
 </body>
 </html>
-

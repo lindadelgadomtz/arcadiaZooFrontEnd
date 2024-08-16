@@ -1,13 +1,13 @@
 /*********************************************** RAPPORT VETERINAIRE **************************************/
 
 
-fetchAnimals();
+fetchAnimalsRapport();
 
 const btnRapport = document.getElementById("btnRapport");
 
 btnRapport.addEventListener("click", createRapport);
 
-async function fetchAnimals() {
+async function fetchAnimalsRapport() {
 
   try {
 
@@ -91,89 +91,112 @@ function displayError(error) {
 }
 
 
-/*********************************************** RAPPORT VETERINAIRE VS RAPPORT EMPLOYEE **************************************/
+/*********************************************** RAPPORT VETERINAIRE Compare**************************************/
+
+fetchAnimals();
 
 document.getElementById('animalForm').addEventListener('submit', function(event) {
-  event.preventDefault();
+    event.preventDefault();
 
-  const animalId = document.getElementById('animalId').value;
-  const date = document.getElementById('date').value;
+    const animalSelectionInput = document.getElementById('animalCompareSelectionInput').value;
+    const date = document.getElementById('date').value;
 
-  if (!animalId || !date) {
-      alert('Please enter both a valid animal ID and date.');
-      return;
-  }
+    if (!animalSelectionInput || !date) {
+        alert('Please select an animal and a date.');
+        return;
+    }
 
-  // Fetch the comparison data from the backend
-  fetch(`/compareFoodLog/${animalId}/${date}`)
-      .then(response => response.json())
-      .then(data => {
-          displayResults(data);
-      })
-      .catch(error => {
-          console.error('Error fetching data:', error);
-          alert('An error occurred while fetching data. Please try again.');
-      });
+    // Fetch the comparison data using the selected animal ID
+    fetch(apiUrl + `compareFoodLog/${animalSelectionInput}/${date}`)
+        .then(response => response.json())
+        .then(data => {
+            displayResults(data);
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            alert('An error occurred while fetching data. Please try again.');
+        });
 });
+
+async function fetchAnimals() {
+    try {
+        const response = await fetch(apiUrl + "animal");
+        const animals = await response.json();
+        populateAnimalDropdown("animalCompareSelectionInput", animals);
+    } catch (error) {
+        console.error("Error fetching animals:", error);
+    }
+}
+
+function populateAnimalDropdown(dropdownId, items) {
+    const dropdown = document.getElementById(dropdownId);
+    dropdown.innerHTML = "";
+    items.forEach(item => {
+        const option = document.createElement("option");
+        option.value = item.id;
+        option.textContent = `${item.prenom}, ${item.race.label}` || item.id; // Adjust according to your JSON structure
+        dropdown.appendChild(option);
+    });
+}
 
 function displayResults(data) {
   const resultsContainer = document.getElementById('resultsContainer');
-  resultsContainer.innerHTML = ''; // Clear previous results
+  resultsContainer.innerHTML = ""; // Clear previous results
 
-  if (data.error) {
-      resultsContainer.innerHTML = `<p>${data.error}</p>`;
+  if (!data || data.error) {
+      resultsContainer.innerHTML = `<p>${data.error || 'No data found'}</p>`;
       return;
   }
 
-  // Display employee food logs
-  const employeeLogsHtml = createTableHtml(data.employeeFoodLogs, 'Employee Food Logs');
-  resultsContainer.innerHTML += employeeLogsHtml;
+  // Create a section for veterinary reports
+  const vetReportsSection = document.createElement('div');
+  vetReportsSection.classList.add('result');
+  vetReportsSection.innerHTML = `
+      <h3>Rapport Vétérinaire for ${data.animal}</h3>
+      <table>
+          <thead>
+              <tr>
+                  <th>État de l'animal</th>
+                  <th>Nourriture</th>
+                  <th>Grammage</th>
+                  <th>Détail</th>
+              </tr>
+          </thead>
+          <tbody>
+              ${data.veterinaryReports.map(report => `
+                  <tr>
+                      <td>${report.etat_animal}</td>
+                      <td>${report.nourriture}</td>
+                      <td>${report.nourriture_grammage}g</td>
+                      <td>${report.detail}</td>
+                  </tr>
+              `).join('')}
+          </tbody>
+      </table>
+  `;
+  resultsContainer.appendChild(vetReportsSection);
 
-  // Display veterinarian reports
-  const vetReportsHtml = createTableHtml(data.veterinaireRapports, 'Veterinarian Reports');
-  resultsContainer.innerHTML += vetReportsHtml;
-
-  // You can implement additional comparison logic here
-  // For example, highlight discrepancies between logs and reports
-  compareLogs(data.employeeFoodLogs, data.veterinaireRapports);
-}
-
-function createTableHtml(dataArray, title) {
-  if (!dataArray || dataArray.length === 0) {
-      return `<div class="result"><h3>${title}</h3><p>No data available.</p></div>`;
-  }
-
-  let tableHtml = `<div class="result"><h3>${title}</h3><table><thead><tr>`;
-  const headers = Object.keys(dataArray[0]);
-  headers.forEach(header => {
-      tableHtml += `<th>${header}</th>`;
-  });
-  tableHtml += `</tr></thead><tbody>`;
-
-  dataArray.forEach(item => {
-      tableHtml += `<tr>`;
-      headers.forEach(header => {
-          tableHtml += `<td>${item[header]}</td>`;
-      });
-      tableHtml += `</tr>`;
-  });
-
-  tableHtml += `</tbody></table></div>`;
-  return tableHtml;
-}
-
-function compareLogs(employeeLogs, vetReports) {
-  // Basic comparison logic example (more complex logic can be implemented as needed)
-  employeeLogs.forEach(empLog => {
-      const correspondingVetReport = vetReports.find(vetReport => vetReport.date === empLog.date);
-
-      if (correspondingVetReport) {
-          if (empLog.nourriture !== correspondingVetReport.nourriture) {
-              console.warn(`Discrepancy found on ${empLog.date}: Food differs. Employee: ${empLog.nourriture}, Vet: ${correspondingVetReport.nourriture}`);
-          }
-          if (empLog.nourriture_grammage_emp !== correspondingVetReport.nourriture_grammage) {
-              console.warn(`Discrepancy found on ${empLog.date}: Grammage differs. Employee: ${empLog.nourriture_grammage_emp}, Vet: ${correspondingVetReport.nourriture_grammage}`);
-          }
-      }
-  });
+  // Create a section for animal feedings
+  const feedingsSection = document.createElement('div');
+  feedingsSection.classList.add('result');
+  feedingsSection.innerHTML = `
+      <h3>Feeding Log for ${data.animal}</h3>
+      <table>
+          <thead>
+              <tr>
+                  <th>Food Type</th>
+                  <th>Amount</th>
+              </tr>
+          </thead>
+          <tbody>
+              ${data.animalFeedings.map(feeding => `
+                  <tr>
+                      <td>${feeding.food_type}</td>
+                      <td>${feeding.amount}g</td>
+                  </tr>
+              `).join('')}
+          </tbody>
+      </table>
+  `;
+  resultsContainer.appendChild(feedingsSection);
 }
