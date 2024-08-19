@@ -1,96 +1,91 @@
-<div class="hero-scene text-center text-white">
-    <div class="hero-scene-content">
-        <h1>Espace administrateur</h1>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
 
-    <article>
-        <!-- Registration form -->
-        <div class="container p-4">
-            <form>
-                <h3>Enregistrement d'un nouvel utilisateur</h3>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZOO Management</title>
+    <link rel="stylesheet" href="path/to/your/styles.css">
+</head>
+
+<body>
+    <header class="hero-scene text-center text-white">
+        <div class="hero-scene-content">
+            <h1>Espace Administrateur</h1>
+        </div>
+    </header>
+
+    <main class="container p-4">
+        <!-- Registration Form -->
+        <section class="form-section mt-4 mb-4" style="background-color: white; border-radius: 10px; padding: 25px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+            <h2>Enregistrement d'un Nouvel Utilisateur</h2>
+            <form style="border-radius: 10px; padding: 20px;">
                 <div class="form-group mb-4">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="emailRegistrationInput" aria-describedby="emailHelp"
-                        placeholder="Enter email">
+                    <label for="emailRegistrationInput">Email Address</label>
+                    <input type="email" class="form-control" id="emailRegistrationInput" placeholder="Enter email">
                     <small id="emailHelp" class="form-text text-light">We'll never share your email with anyone
                         else.</small>
                 </div>
                 <div class="form-group mb-4">
-                    <label for="exampleInputPassword1">Password</label>
+                    <label for="passwordRegistrationInput">Password</label>
                     <input type="password" class="form-control" id="passwordRegistrationInput" placeholder="Password">
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="roleInput1" value="option1"
-                        checked>
-                    <label class="form-check-label" for="exampleRadios1">
-                        Vétérinaire
-                    </label>
+                <div class="form-check mb-4">
+                    <input class="form-check-input" type="radio" name="role" id="roleInput1" value="vet" checked>
+                    <label class="form-check-label" for="roleInput1">Vétérinaire</label>
                 </div>
                 <div class="form-check mb-4">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="roleInput2" value="option2">
-                    <label class="form-check-label" for="exampleRadios2">
-                        Employé
-                    </label>
+                    <input class="form-check-input" type="radio" name="role" id="roleInput2" value="employee">
+                    <label class="form-check-label" for="roleInput2">Employé</label>
                 </div>
-                <button type="button" class="btn btn-primary" id="btnRegistration">Soumettre</button>
+                <button type="submit" class="btn btn-primary" id="btnRegistration">Soumettre</button>
             </form>
-            <div class="text-center pt-4">
-            </div>
-        </div>
-    </article>
-    <article class="container-background">
-        <!-- Habitats form -->
-        <div class="container mt-5">
+        </section>
+
+        <!-- Habitats Form -->
+        <section class="form-section container-background" style="background-color: #6c757d5e; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); border-radius: 10px; padding: 20px;">
+            <h2>Espace Habitat</h2>
             <form id="habitatsForm" enctype="multipart/form-data">
-                <h3>Espace habitat</h3>
                 <div class="form-group mb-4">
-                    <label for="habitatsInput">Nom du habitat</label>
+                    <label for="habitatsInput">Nom du Habitat</label>
                     <textarea class="form-control" id="habitatsInput" rows="1"></textarea>
                 </div>
                 <div class="form-group mb-4">
                     <label for="descriptionInput">Description</label>
                     <textarea class="form-control" id="descriptionInput" rows="4"></textarea>
                 </div>
-                <div class="form-group mt-3 mb-3">
-                    <label for="photoInput">Télécharger photo: </label>
+                <div class="form-group mb-4">
+                    <label for="photoInput">Télécharger Photo</label>
                     <input type="file" class="form-control-file" id="photoInput">
                 </div>
-                <button type="button" class="btn btn-primary-custom mt-3 mb-3" id="btnHabitats">Soumettre</button>
+                <button type="submit" class="btn btn-primary-custom" id="btnHabitats">Soumettre</button>
             </form>
-        </div>
-        <div class="container p-4 ">
-            <div class="text-center pt-4">
-    </article>
-    <article>
-        <!-- Services form -->
-        <div class="container p-4">
-            <div class="container mt-5">
-                <form>
-                    <h3>Espace services</h3>
-                    <div class="form-group mb-4">
-                        <label for="servicesInput">Nom du service</label>
-                        <textarea class="form-control" id="servicesInput" rows="1"></textarea>
-                    </div>
-                    <div class="form-group mb-4">
-                        <label for="servicesDescriptionInput">Description</label>
-                        <textarea class="form-control" id="servicesDescriptionInput" rows="4"></textarea>
-                    </div>
-                    <div class="form-group  mt-3 mb-3">
-                        <label for="servicesPhotoInput">Télécharger photo: </label>
-                        <p>
-                            <input type="file" class="form-control-file" id="servicesPhotoInput">
-                        </p>
-                    </div>
-                    <button type="button" class="btn btn-primary-custom mt-3 mb-3 " id="btnServices">Soumettre</button>
-                </form>
-            </div>
-        </div>
-    </article>
-    <article class="container-background">
-        <!-- Animals form -->
-        <div class="container mt-5">
+        </section>
+
+        <!-- Services Form -->
+        <section class="form-section mt-4 mb-4" style="background-color: white; border-radius: 10px; padding: 25px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+            <h2>Espace Services</h2>
+            <form>
+                <div class="form-group mb-4">
+                    <label for="servicesInput">Nom du Service</label>
+                    <textarea class="form-control" id="servicesInput" rows="1"></textarea>
+                </div>
+                <div class="form-group mb-4">
+                    <label for="servicesDescriptionInput">Description</label>
+                    <textarea class="form-control" id="servicesDescriptionInput" rows="4"></textarea>
+                </div>
+                <div class="form-group mb-4">
+                    <label for="servicesPhotoInput">Télécharger Photo</label>
+                    <input type="file" class="form-control-file" id="servicesPhotoInput">
+                </div>
+                <button type="submit" class="btn btn-primary-custom" id="btnServices">Soumettre</button>
+            </form>
+        </section>
+
+        <!-- Animals Form -->
+        <section class="form-section container-background" style="background-color: #6c757d5e; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); border-radius: 10px; padding: 20px;">
+            <h2>Espace Animaux</h2>
             <form class="py-4">
-                <h3>Espace animaux</h3>
                 <div class="form-group mb-4">
                     <label for="animalInput">Prénom</label>
                     <textarea class="form-control" id="animalInput" rows="1"></textarea>
@@ -101,67 +96,45 @@
                 </div>
                 <div class="form-group mb-4">
                     <label for="habitatSelectionInput">Habitat</label>
-                    <select class="form-select" id="habitatSelectionInput">
-                    </select>
+                    <select class="form-select" id="habitatSelectionInput"></select>
                 </div>
-                <div class="form-group  mt-3 mb-3">
-                    <label for="animalPhotoInput">Télécharger photo: </label>
-                    <p>
-                        <input type="file" class="form-control-file" id="animalPhotoInput">
-                    </p>
-                </div>
-                <button type="button" class="btn btn-primary-custom mt-3 mb-3" id="btnAnimal">Soumettre</button>
-            </br>
-            </br>
-                <h3>Ajouter nouvelle Race</h3>
-
                 <div class="form-group mb-4">
-                    <label for="nouvelleRaceInput">Ajouter nouvelle Race</label>
+                    <label for="animalPhotoInput">Télécharger Photo</label>
+                    <input type="file" class="form-control-file" id="animalPhotoInput">
+                </div>
+                <button type="submit" class="btn btn-primary-custom" id="btnAnimal">Soumettre</button>
+                <h3 class="mt-4">Ajouter Nouvelle Race</h3>
+                <div class="form-group mb-4">
+                    <label for="nouvelleRaceInput">Ajouter Nouvelle Race</label>
                     <textarea class="form-control" id="nouvelleRaceInput" rows="1"></textarea>
                 </div>
-                <button type="button" class="btn btn-primary-custom mt-3 mb-3" id="btnNouvelleRace">Soumettre Race</button>
-
-
-
-
-
+                <button type="submit" class="btn btn-primary-custom" id="btnNouvelleRace">Soumettre Race</button>
             </form>
+        </section>
 
-            <div class="py-4 border-top border-success">
-                <!-- Espace véterinare form -->
-                <h3>Espace vétérinaire</h3>
-                <form>
-                    <div class="form-group mb-4">
-                        <label for="animalSelectionInput">Animal</label>
-                        <select class="form-select" id="animalSelectionInput">
-                        </select>
-                    </div>
-                    <div class="form-group mb-4">
-                        <label for="etatInput">Etat de l'animal</label>
-                        <textarea class="form-control" id="etatInput" rows="1"></textarea>
-                    </div>
-                    <div class="form-group mb-4">
-                        <label for="nourritureInput">Nourriture proposé</label>
-                        <textarea class="form-control" id="nourritureInput" rows="1"></textarea>
-                    </div>
-                    <div class="form-group mb-4">
-                    <label for="grammageInput">Grammage</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="grammageInput" placeholder="Grammage" aria-label="Grammage"
-                            aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <span class="input-group-text" id="basic-addon2">grammes</span>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="form-group mb-4">
-                        <label for="detailAnimalInput">Détail de l'état de l'animal (facultative)</label>
-                        <textarea class="form-control" id="detailAnimalInput" rows="3"></textarea>
-                    </div>
-                    <button type="button" class="btn btn-primary-custom mt-3 mb-3" id="btnRapport">Soumettre</button>
-                </form>
-
+        <!-- Compare Logs Form -->
+        <section class="form-section mt-4 mb-4" style="background-color: white; border-radius: 10px; padding: 25px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+            <h2>Compare Animal Feeding Logs</h2>
+            <form id="animalForm" style="border-radius: 10px; padding: 20px;">
+                <div class="form-group mb-4">
+                    <label for="animalCompareSelectionInput">Select Animal:</label>
+                    <select id="animalCompareSelectionInput" name="animalCompareSelectionInput" required>
+                        <!-- Options will be populated here -->
+                    </select>
+                </div>
+                <div class="form-group mb-4">
+                    <label for="date">Select Date:</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <button type="submit" class="btn btn-primary" id="btnCompareLogs">Compare Logs</button>
+            </form>
+            <div id="resultsContainer" class="result-container mt-4">
+                <!-- Results will be inserted here -->
             </div>
-        </div>
-</div>
-</article>
+        </section>
+    </main>
+
+    <script src="path/to/your/scripts.js"></script>
+</body>
+
+</html>

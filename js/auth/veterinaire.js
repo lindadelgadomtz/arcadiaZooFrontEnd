@@ -154,13 +154,13 @@ function displayResults(data) {
   vetReportsSection.classList.add('result');
   vetReportsSection.innerHTML = `
       <h3>Rapport Vétérinaire for ${data.animal}</h3>
-      <table>
+      <table class="table mb-4">
           <thead>
               <tr>
-                  <th>État de l'animal</th>
-                  <th>Nourriture</th>
-                  <th>Grammage</th>
-                  <th>Détail</th>
+                  <th scope>État de l'animal</th>
+                  <th scope>Nourriture</th>
+                  <th scope>Grammage</th>
+                  <th scope>Détail</th>
               </tr>
           </thead>
           <tbody>
@@ -182,11 +182,11 @@ function displayResults(data) {
   feedingsSection.classList.add('result');
   feedingsSection.innerHTML = `
       <h3>Feeding Log for ${data.animal}</h3>
-      <table>
+      <table class="table mb-4">
           <thead>
               <tr>
-                  <th>Nourriture</th>
-                  <th>Grammage</th>
+                  <th scope>Nourriture</th>
+                  <th scope>Grammage</th>
               </tr>
           </thead>
           <tbody>

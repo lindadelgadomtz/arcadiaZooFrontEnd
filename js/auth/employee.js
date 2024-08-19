@@ -153,7 +153,7 @@ async function editService() {
         console.error('Error editing service details:', error);
     }
 
-    async function editServicePhoto(event){
+    async function editServicePhoto(serviceId){
         const formdata = new FormData();
         formdata.append("title", servicesInput.value);
         formdata.append("image", servicesPhotoInput.files[0]);
@@ -164,13 +164,13 @@ async function editService() {
         redirect: "follow"
         };
     
-        await fetch(apiUrl+`gallery/${id}`, requestOptions)
+        await fetch(apiUrl+`gallery/${serviceId}`, requestOptions)
         .then((response) => response.json())
-        .then((result) => editInputDescription(id, result.id))
+        .then((result) => editInputDescription(serviceId, result.id))
         .catch((error) => console.error(error));
     }
 
-    function editInputDescription(id) {
+    function editInputDescription(serviceId) {
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -187,7 +187,7 @@ async function editService() {
             redirect: "follow"
         };
 
-        fetch(`https://127.0.0.1:8000/api/service/${id}`, requestOptions)
+        fetch(`https://127.0.0.1:8000/api/service/${serviceId}`, requestOptions)
             .then((response) => response.text(editInputDescription))
             .then((result) => window.location.reload())
             .catch((error) => console.error(error));
