@@ -146,7 +146,7 @@ btnAnimal.addEventListener("click", createAnimal);
 
 
 async function fetchRaces() {
-  console.log('race')
+
   try {
     const response = await fetch(apiUrl+"race");
     const races = await response.json();
@@ -274,7 +274,9 @@ const nouvelleRaceInput = document.getElementById("nouvelleRaceInput");
 
 btnNouvelleRace.addEventListener("click", createRace);
 
-async function createRace(){
+async function createRace(event){
+  event.preventDefault();  // Prevent the default form submission behavior
+
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   
@@ -298,6 +300,7 @@ async function createRace(){
 
 function displayConfirmation(response) {
   alert('Race enregistré avec succès!');
+  console.log(response);
   window.location.replace("/administrateur"); // Redirect to home after successful registration
 }
 
