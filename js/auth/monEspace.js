@@ -1,8 +1,30 @@
-const btnSignin = document.getElementById("btnSignin");
-const mailInput = document.getElementById("mailInput");
-const passwordInput = document.getElementById("passwordInput");
+const monEspaceLink = document.getElementById("monEspaceLink");
+// const mailInput = document.getElementById("mailInput");
+// const passwordInput = document.getElementById("passwordInput");
 
-btnSignin.addEventListener("click", checkCredentials);
+monEspaceLink.addEventListener("click", function(event) {
+
+
+
+    const userRole = localStorage.getItem('label'); // or fetch it from your backend
+
+    // Redirect based on the user's role
+    if (label === 'manager') {
+        window.location.href = '/administrateur.html';
+    } else if (userRole === 'veterinaire') {
+        window.location.href = '/veterinaire.html';
+    } else if (userRole === 'employee') {
+        window.location.href = '/employee.html';
+    } else {
+        alert('Role not recognized!');
+    }
+});    
+
+
+
+
+
+    event.preventDefault();
 
 async function checkCredentials() {
     // Check that the user exists and get the token

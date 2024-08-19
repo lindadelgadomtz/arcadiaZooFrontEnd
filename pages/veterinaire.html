@@ -1,0 +1,71 @@
+<body>
+    <!-- Hero Section -->
+    <section>
+    <div class="hero-scene text-center text-white">
+        <div class="hero-scene-content">
+            <h1>Espace Vétérinaire</h1>
+        </div>
+    </div>
+    </section>
+    <!-- Espace Vétérinaire Form -->
+    <section class="form-section mt-4 mb-4 container-background" style="background-color: #6c757d5e; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); border-radius: 10px; padding: 20px;">
+    <div class="container my-5">
+        <h3 class="text-primary mb-4">Espace Vétérinaire</h3>
+        <form>
+            <div class="form-group">
+                <label for="animalSelectionInput">Animal</label>
+                <select class="form-select" id="animalSelectionInput">
+                    <!-- Options will be populated here -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="datetimeInput">Date et Heure</label>
+                <input type="datetime-local" class="form-control" id="datetimeInput">
+            </div>
+            <div class="form-group">
+                <label for="etatInput">État de l'animal</label>
+                <textarea class="form-control" id="etatInput" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="nourritureInput">Nourriture proposée</label>
+                <textarea class="form-control" id="nourritureInput" rows="2"></textarea>
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="grammageInput" placeholder="Grammage" aria-label="Grammage" aria-describedby="basic-addon2">
+                <span class="input-group-text" id="basic-addon2">grammes</span>
+            </div>
+            <div class="form-group">
+                <label for="detailAnimalInput">Détail de l'état de l'animal (facultatif)</label>
+                <textarea class="form-control" id="detailAnimalInput" rows="4"></textarea>
+            </div>
+            <button type="button" class="btn btn-primary-custom mt-3" id="btnRapport">Soumettre</button>
+        </form>
+    </div>
+    </section>
+    <!-- Compare Animal Feeding Logs -->
+    <section class="form-section mt-4 mb-4" style="background-color: white; border-radius: 10px; padding: 25px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+    <div class="container my-5">
+        <h1 class="text-primary mb-4">Compare Animal Feeding Logs</h1>
+        <form id="animalForm" class="mb-4">
+            <div class="form-group">
+                <label for="animalCompareSelectionInput">Select Animal:</label>
+                <select id="animalCompareSelectionInput" name="animalCompareSelectionInput" class="form-select" required>
+                    <!-- Options will be populated here -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date">Select Date:</label>
+                <input type="date" id="date" name="date" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary-custom mt-4 mb-4s">Compare Logs</button>
+        </form>
+
+        <!-- Container for displaying the results -->
+        <div id="resultsContainer" class="result-container">
+            <!-- Results will be inserted here -->
+        </div>
+    </div>
+    </section>
+    <script src="path/to/your/scripts.js"></script>
+</body>
+</html>
