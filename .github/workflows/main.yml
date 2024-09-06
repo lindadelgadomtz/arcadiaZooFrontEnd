@@ -20,10 +20,10 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
-        server: ftps-arcadiazooecf.alwaysdata.net
+        server: ftp-arcadiazooecf.alwaysdata.net
         username: arcadiazooecf
         password: ${{ secrets.ftp_password }}
-        protocol: ftps  # Enable FTPS (FTP over SSL/TLS)
+        protocol: ftps-legacy  # Enable FTPS (FTP over SSL/TLS)
         security: loose
         port: 21        # FTPS typically uses port 21
         passive: true   # Enable passive mode for better compatibility
