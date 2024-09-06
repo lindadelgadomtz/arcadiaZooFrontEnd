@@ -23,3 +23,10 @@ jobs:
         server: ftp-arcadiazooecf.alwaysdata.net
         username: arcadiazooecf
         password: ${{ secrets.FTP_PASSWORD }}
+        protocol: ftps  # Enable FTPS (FTP over SSL/TLS)
+        port: 21        # FTPS typically uses port 21
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
+        server-dir: /www/
