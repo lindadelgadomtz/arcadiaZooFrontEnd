@@ -32,5 +32,14 @@ jobs:
           **/node_modules/bootstrap/scss/**
           **/node_modules/bootstrap-icons/icons/**
         server-dir: /www/
-        concurrency: 1 # Limit parallel connections
-        timeBetweenConnections: 1000 # Add 1 second delay between connections
+        concurrency: 1 # Limit parallel connections to 1
+        timeBetweenConnections: 2000 # Add 2 seconds delay between connections
+        debug: true # Enable debug mode for more details
+
+    - name: Retry Sync files on failure
+      run: |
+        for i in {1..3}; do
+          echo "Attempt $i"
+          npx ftp-deploy --config ./ftp-deploy.config.js && break
+        done
+      continue-on-error: true # Ensures retries on errors
