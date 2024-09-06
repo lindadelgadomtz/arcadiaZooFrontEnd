@@ -16,7 +16,10 @@ jobs:
         password: ${{ secrets.ftp_password }}
         protocol: ftps
         port: 21
+        passive: true  # Enable passive mode
         server-dir: /www/
+        concurrency: 1 # Set to 1 to limit parallel connections
+        timeBetweenConnections: 1000 # 1 second delay between connections
         exclude: |
           **/.git*
           **/.git*/**
