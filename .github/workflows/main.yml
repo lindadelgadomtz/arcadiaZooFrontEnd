@@ -16,25 +16,6 @@ jobs:
     - name: 🔨 Build Project
       run: |
         npm install
-
-   on: push
-name: 🚀 Deploy website on push
-jobs:
-  web-deploy:
-    name: 🎉 Deploy
-    runs-on: ubuntu-latest
-    steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v4
-
-    - name: Use Node.js 16
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16'
-      
-    - name: 🔨 Build Project
-      run: |
-        npm install
     
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -53,11 +34,3 @@ jobs:
         server-dir: /www/
         concurrency: 1 # Limit parallel connections
         timeBetweenConnections: 1000 # Add 1 second delay between connections
-
-    - name: Retry Sync files on failure
-      run: |
-        for i in {1..3}; do
-          echo "Attempt $i"
-          npx ftp-deploy --config ./ftp-deploy.config.js && break
-        done
-      continue-on-error: true # Ensures retries on errors
