@@ -23,15 +23,14 @@ jobs:
         server: ftp-arcadiazooecf.alwaysdata.net
         username: arcadiazooecf
         password: ${{ secrets.ftp_password }}
+        protocol: ftps  # Enable FTPS (FTP over SSL/TLS)
+        port: 21        # FTPS typically uses port 21
+        passive: true   # Enable passive mode for better compatibility
         exclude: |
           **/.git*
           **/.git*/**
           **/node_modules/bootstrap/scss/**
           **/node_modules/bootstrap-icons/icons/**
-        #protocol: ftps
-        #port: 21
-        #passive: true  # Enable passive mode
         server-dir: /www/
-        #concurrency: 1 # Set to 1 to limit parallel connections
-        #timeBetweenConnections: 1000 # 1 second delay between connections
-        
+        concurrency: 1 # Limit parallel connections
+        timeBetweenConnections: 1000 # Add 1 second delay between connections
