@@ -20,7 +20,7 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
-        server: ftp-arcadiazooecf.alwaysdata.net
+        server: ftps-arcadiazooecf.alwaysdata.net
         username: arcadiazooecf
         password: ${{ secrets.ftp_password }}
         protocol: ftps  # Enable FTPS (FTP over SSL/TLS)
@@ -34,7 +34,7 @@ jobs:
           **/node_modules/bootstrap-icons/icons/**
         server-dir: /www/
         concurrency: 1 # Limit parallel connections to 1
-        timeBetweenConnections: 2000 # Add 2 seconds delay between connections
+        timeBetweenConnections: 3000 # Add 2 seconds delay between connections
         debug: true # Enable debug mode for more details
 
     - name: Retry Sync files on failure
