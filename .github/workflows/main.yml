@@ -24,6 +24,7 @@ jobs:
         username: arcadiazooecf
         password: ${{ secrets.ftp_password }}
         protocol: ftps  # Enable FTPS (FTP over SSL/TLS)
+        security: loose
         port: 21        # FTPS typically uses port 21
         passive: true   # Enable passive mode for better compatibility
         exclude: |
