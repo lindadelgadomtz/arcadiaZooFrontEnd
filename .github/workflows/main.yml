@@ -32,7 +32,7 @@ jobs:
           **/node_modules/**
         server-dir: /www/
         concurrency: 1 # Limit parallel connections to 1
-        timeBetweenConnections: 3000 # Add 2 seconds delay between connections
+        timeBetweenConnections: 2000 # Add 2 seconds delay between connections
         debug: true # Enable debug mode for more details
 
     - name: Retry Sync files on failure
