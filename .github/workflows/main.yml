@@ -7,6 +7,13 @@ jobs:
     steps:
     - name: 🚚 Get latest code
       uses: actions/checkout@v4
+
+    - name: 📂 Install dependencies
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'  
+    - name: 📂 Install npm dependencies
+      run: npm install
     
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -14,14 +21,15 @@ jobs:
         server: ftp-arcadiazooecf.alwaysdata.net
         username: arcadiazooecf
         password: ${{ secrets.ftp_password }}
-        protocol: ftps
-        port: 21
-        passive: true  # Enable passive mode
-        server-dir: /www/
-        concurrency: 1 # Set to 1 to limit parallel connections
-        timeBetweenConnections: 1000 # 1 second delay between connections
         exclude: |
           **/.git*
           **/.git*/**
           **/node_modules/bootstrap/scss/**
           **/node_modules/bootstrap-icons/icons/**
+        #protocol: ftps
+        #port: 21
+        #passive: true  # Enable passive mode
+        server-dir: /www/
+        #concurrency: 1 # Set to 1 to limit parallel connections
+        #timeBetweenConnections: 1000 # 1 second delay between connections
+        
