@@ -17,17 +17,42 @@ jobs:
       run: |
         npm install
 
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+   on: push
+name: 🚀 Deploy website on push
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v4
+
+    - name: Use Node.js 16
+      uses: actions/setup-node@v2
       with:
-        server:  ftp-arcadiazooecf.alwaysdata.net
+        node-version: '16'
+      
+    - name: 🔨 Build Project
+      run: |
+        npm install
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ftp-arcadiazooecf.alwaysdata.net
         username: arcadiazooecf
-        password: ${{ secrets.ftp_password }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        protocol: ftps  # Enable FTPS (FTP over SSL/TLS)
+        port: 21        # FTPS typically uses port 21
+        passive: true   # Enable passive mode for better compatibility
         exclude: |
           **/.git*
           **/.git*/**
-          **/node_modules/**
-        local-dir: ./out/
+          **/node_modules/bootstrap/scss/**
+          **/node_modules/bootstrap-icons/icons/**
+        server-dir: /www/
+        concurrency: 1 # Limit parallel connections
+        timeBetweenConnections: 1000 # Add 1 second delay between connections
 
     - name: Retry Sync files on failure
       run: |
