@@ -23,6 +23,6 @@ jobs:
         server: ftp-arcadiazooecf.alwaysdata.net
         username: arcadiazooecf
         password: ${{ secrets.FTP_PASSWORD }}
-        protocol: ftps  # Enable FTPS (FTP over SSL/TLS)
+        protocol: ftp  # Enable FTPS (FTP over SSL/TLS)
         port: 990        # FTPS typically uses port 21
         server-dir: /www/
