@@ -18,7 +18,7 @@ jobs:
         npm install
     
     - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ftp-arcadiazooecf.alwaysdata.net
         username: arcadiazooecf
@@ -26,11 +26,11 @@ jobs:
         protocol: ftps  # Enable FTPS (FTP over SSL/TLS)
         port: 21        # FTPS typically uses port 21
         passive: true   # Enable passive mode for better compatibility
+        security: loose
         exclude: |
           **/.git*
           **/.git*/**
-          **/node_modules/bootstrap/scss/**
-          **/node_modules/bootstrap-icons/icons/**
+          **/node_modules/**
         server-dir: /www/
         concurrency: 1 # Limit parallel connections
         timeBetweenConnections: 1000 # Add 1 second delay between connections
