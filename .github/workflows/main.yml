@@ -24,5 +24,5 @@ jobs:
         username: arcadiazooecf
         password: ${{ secrets.FTP_PASSWORD }}
         protocol: ftps  # Enable FTPS (FTP over SSL/TLS)
-        port: 21        # FTPS typically uses port 21
+        port: 990        # FTPS typically uses port 21
         server-dir: /www/
