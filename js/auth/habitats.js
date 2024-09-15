@@ -20,7 +20,7 @@ if(habitatId){
       .catch(error => console.error('Error:', error));
 } else {
   // habitats.js
-  fetch('https://127.0.0.1:8000/api/habitat')
+  fetch('https://arcadiazoo-backend-03da514839c5.herokuapp.com/api/habitat')
   .then(response => response.json())
   .then(data => {
       if (data.error) {
@@ -47,7 +47,7 @@ function injectHabitats(habitats) {
       <div class="col">
       <a href="/habitats?habitat=${habitat.id}"
       <div class="card">
-      <img src="https://127.0.0.1:8000/asset${gallerySrc}" class="card-img-top" alt="${habitat.nom}">
+      <img src="https://arcadiazoo-backend-03da514839c5.herokuapp.com/asset${gallerySrc}" class="card-img-top" alt="${habitat.nom}">
       <div class="card-body">
         <h5 class="card-title">${habitat.nom}</h5>
         <p class="card-text">${habitat.description}</p>

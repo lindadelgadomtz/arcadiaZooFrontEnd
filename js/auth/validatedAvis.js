@@ -3,7 +3,7 @@ const avisListValidatedPseudo = urlParams.get('avisListValidated');
 
 if (avisListValidatedPseudo)
 console.log(hola); {
-    fetch('https://127.0.0.1:8000/api/avis/validated')
+    fetch('https://arcadiazoo-backend-03da514839c5.herokuapp.com/api/avis/validated')
     .then(response => response.json())
     .then(data => {
         if (data.error) {

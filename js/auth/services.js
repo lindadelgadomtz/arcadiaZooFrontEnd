@@ -4,7 +4,7 @@ const serviceId = urlParams.get('service');
 console.log(serviceId);
 
 if (serviceId) {
-    fetch(`https://127.0.0.1:8000/api/service/${serviceId}`)
+    fetch(`https://arcadiazoo-backend-03da514839c5.herokuapp.com/api/service/${serviceId}`)
         .then(response => response.json())
         .then(data => {
             if (data.error) {
@@ -19,7 +19,7 @@ if (serviceId) {
         .catch(error => console.error('Error:', error));
 } else {
     // service.js
-    fetch('https://127.0.0.1:8000/api/service')
+    fetch('https://arcadiazoo-backend-03da514839c5.herokuapp.com/api/service')
         .then(response => response.json())
         .then(data => {
             if (data.error) {
@@ -52,7 +52,7 @@ function injectServices(services) {
         serviceElement.innerHTML = `
             <div class="col">
                     <div class="card">
-                        <img src="https://127.0.0.1:8000/asset${gallerySrc}" class="card-img-top" alt="${serviceNom}">
+                        <img src="https://arcadiazoo-backend-03da514839c5.herokuapp.com/asset${gallerySrc}" class="card-img-top" alt="${serviceNom}">
                         <div class="card-body">
                             <h5 class="card-title">${serviceNom}</h5>
                             <p class="card-text">${service.description}</p>

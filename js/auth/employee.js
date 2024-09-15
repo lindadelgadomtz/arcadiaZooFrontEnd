@@ -11,7 +11,7 @@ loadServices();
 
 
 function loadAvis() {
-    fetch('https://127.0.0.1:8000/api/avis')
+    fetch('https://arcadiazoo-backend-03da514839c5.herokuapp.com/api/avis')
         .then(response => response.json())
         .then(avis => {
             const avisContainer = document.getElementById('avis');
@@ -29,14 +29,14 @@ function loadAvis() {
 }
 
 function validateAvis(id) {
-    fetch(`https://127.0.0.1:8000/api/employee/validate-avis/${id}`, { method: 'POST' })
+    fetch(`https://arcadiazoo-backend-03da514839c5.herokuapp.com/api/employee/validate-avis/${id}`, { method: 'POST' })
         .then(() => loadAvis())
         .then((result) => displayConfirmation(result))
         .catch((error) => displayError(error));
 }
 
 function invalidateAvis(id) {
-    fetch(`https://127.0.0.1:8000/api/employee/invalidate-avis/${id}`, { method: 'POST' })
+    fetch(`https://arcadiazoo-backend-03da514839c5.herokuapp.com/api/employee/invalidate-avis/${id}`, { method: 'POST' })
         .then(() => loadAvis())
         .then((result) => displayConfirmation(result))
         .catch((error) => displayError(error));
@@ -80,7 +80,7 @@ const serviceId = urlParams.get('service');
 
 async function loadServices() {
     try {
-        const response = await fetch('https://127.0.0.1:8000/api/service');
+        const response = await fetch('https://arcadiazoo-backend-03da514839c5.herokuapp.com/api/service');
         const services = await response.json();
         injectServices(services);
     } catch (error) {
@@ -102,7 +102,7 @@ function injectServices(services) {
         serviceElement.innerHTML = `
             <div class="col">
                 <div class="card" style="width: 16rem;">
-                    <img src="https://127.0.0.1:8000/asset${gallerySrc}" class="card-img-top" alt="${serviceNom}">
+                    <img src="https://arcadiazoo-backend-03da514839c5.herokuapp.com/asset${gallerySrc}" class="card-img-top" alt="${serviceNom}">
                     <div class="card-body">
                         <h5 class="card-title">${serviceNom}</h5>
                         <p class="card-text">${service.description}</p>
@@ -187,7 +187,7 @@ async function editService() {
             redirect: "follow"
         };
 
-        fetch(`https://127.0.0.1:8000/api/service/${serviceId}`, requestOptions)
+        fetch(`https://arcadiazoo-backend-03da514839c5.herokuapp.com/api/service/${serviceId}`, requestOptions)
             .then((response) => response.text(editInputDescription))
             .then((result) => window.location.reload())
             .catch((error) => console.error(error));
@@ -218,7 +218,7 @@ async function deleteService() {
 
 (async () => {
         try {
-            const response = await fetch('https://127.0.0.1:8000/api/service');
+            const response = await fetch('https://arcadiazoo-backend-03da514839c5.herokuapp.com/api/service');
             const data = await response.json();
 
             if (data.error) {

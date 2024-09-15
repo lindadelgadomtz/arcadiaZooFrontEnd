@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const roleCookieName = "role";
   const userIdCookieName = 'userId'
   const signoutBtn = document.getElementById("signout-btn");
-  const apiUrl = "https://127.0.0.1:8000/api/";
+  const apiUrl = "https://arcadiazoo-backend-03da514839c5.herokuapp.com/api/";
   
   signoutBtn.addEventListener("click", signout);
   
@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // const roleCookieName = "role";
 // const userIdCookieName = 'userId'
 // const signoutBtn = document.getElementById("signout-btn");
-// const apiUrl = "https://127.0.0.1:8000/api/";
+// const apiUrl = "https://arcadiazoo-backend-03da514839c5.herokuapp.com/api/";
 
 // signoutBtn.addEventListener("click", signout);
 
