@@ -1,6 +1,13 @@
 {
+  "name": "arcadiazoofrontend",
+  "version": "1.0.0",
+  "description": "arcadia website",
+  "scripts": {
+    "start": "serve"
+  },
   "dependencies": {
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3"
-  }
+  },
+  "author": "Linda Delgado"
 }
