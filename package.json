@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "arcadia website",
   "scripts": {
-    "start": "serve"
+    "start": "node server.js"
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "express": "^4.21.0",
     "serve": "^10.0.1"
   },
   "author": "Linda Delgado"
