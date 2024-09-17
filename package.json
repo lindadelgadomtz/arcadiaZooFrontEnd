@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "arcadia website",
   "scripts": {
-    "start": "serve -s ."
+    "start": "serve"
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
