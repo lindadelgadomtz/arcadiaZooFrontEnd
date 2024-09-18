@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "arcadia website",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "heroku-postbuild": "echo 'Post build step not needed'"
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
