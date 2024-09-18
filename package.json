@@ -9,6 +9,7 @@
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "express": "^4.21.0",
+    "path": "^0.12.7",
     "serve": "^10.0.1"
   },
   "author": "Linda Delgado"
